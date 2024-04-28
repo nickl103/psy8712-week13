@@ -44,7 +44,6 @@ week13_tbl <- employees_tbl %>%
 #writing csv for week13_tbl per assignment instructions
 write_csv(week13_tbl, "../out/week13.csv")
   
-##Visualization
 
 ###Analysis
 
