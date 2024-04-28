@@ -28,10 +28,12 @@ testscores_tbl <- as_tibble(
 offices_tbl <- as_tibble(
   dbGetQuery(conn, "SELECT *
             FROM datascience_offices;")
-)
-#importing offices data into tibble 
+)#importing offices data into tibble 
 
-
+#writing csv files per assignment instructions
+write_csv(employees_tbl, "../data/employees.csv")
+write_csv(testscores_tbl, "../data/testscores.csv")
+write_csv(offices_tbl, "../data/offices.csv")
 ###Visualization 
 ###Analysis
 ###Publication
