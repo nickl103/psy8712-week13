@@ -34,6 +34,17 @@ offices_tbl <- as_tibble(
 write_csv(employees_tbl, "../data/employees.csv")
 write_csv(testscores_tbl, "../data/testscores.csv")
 write_csv(offices_tbl, "../data/offices.csv")
+
+week13_tbl <- employees_tbl %>% 
+  inner_join(testscores_tbl, by= "employee_id") %>%
+  #used inner join because it got rid of the employees without testscores which is checked by the original employees tbl having 571 but going down to 549 in the week13_tbl 
+  full_join(offices_tbl, by= join_by("city" == "office"))
+#used full join to add the offices information to the existing week 13 tbl
+
+#writing csv for week13_tbl per assignment instructions
+write_csv(week13_tbl, "../out/week13.csv")
+  
+
 ###Visualization 
 ###Analysis
 ###Publication
