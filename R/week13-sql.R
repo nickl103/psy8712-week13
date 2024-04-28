@@ -75,5 +75,7 @@ query1 <- "SELECT employees.employee_id AS employee_id, testscores.test_score AS
             INNER JOIN datascience_offices AS offices ON employees.city = offices.office
             ORDER by offices.type, testscores.test_score DESC;"
 
-dbGetQuery(conn, query1) #pulling the information
+results_query1 <- dbGetQuery(conn, query1) #pulling the information
+
+View(results_query1) #I did this because there is a lot of data so this way you can actually view all of it. 
             
