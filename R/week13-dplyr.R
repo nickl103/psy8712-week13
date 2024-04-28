@@ -44,7 +44,38 @@ week13_tbl <- employees_tbl %>%
 #writing csv for week13_tbl per assignment instructions
 write_csv(week13_tbl, "../out/week13.csv")
   
+##Visualization
 
-###Visualization 
 ###Analysis
-###Publication
+
+##Total number of managers
+week13_tbl %>% 
+  summarize(n()) 
+#549 managers
+#used summarize dplyr function and then use n to return number of values (which is the number of managers)
+
+## Total number of unique managers
+week13_tbl %>%
+  summarize(n_distinct(employee_id))
+#549 unique managers
+#n_distinct gives the number of distinct values in the vector which was all of them
+
+## Summary of number of managers split by location, but only include those who were not originally hired as managers
+week13_tbl %>%
+  filter (manager_hire == "N") %>%#filter out those who were hired as managers
+  group_by(city) %>% #grouping by city 
+  summarise(n()) #gives specific number for each location
+  
+
+##Mean and sd of number of years of employment split by performance level (bottom, middle, top)
+week13_tbl %>% 
+  group_by(performance_group) %>% #grouping by performance
+  summarise(mean= mean(yrs_employed),
+            sd= sd(yrs_employed))  #mean  and sd of years employed
+
+
+##Display each manager's location classification, ID number, and test score, in alphabetical order by location type and desc order of test score 
+week13_tbl %>% 
+  select(employee_id, type, test_score) %>% #selecting ID number, location type, and test score 
+  arrange(type, #arranging alphabetically by type
+          desc(test_score)) #arranging in desc order by test_score
